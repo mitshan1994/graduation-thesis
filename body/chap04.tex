@@ -1,0 +1,139 @@
+% -*- coding: utf-8 -*-
+\chapter{仿紧空间的一些性质(下)}
+\label{chap04}
+
+同样是仿紧空间的性质, 和上一个性质的集合不一样,
+这里的性质需要借助上面对仿紧性质的刻画才能够得到.
+这也是为什么会把性质放在两个地方.
+
+\begin{thm} \label{thm:T3 Lindelof}
+  满足$T_3$公理的Lindel\"{o}f空间是仿紧的.
+\end{thm}
+\begin{proof}
+  设$X$是满足$T_3$公理的Lindel\"{o}f空间.
+  由定理\ref{thm:paracompact sigma finite},
+  要证$X$仿紧,只要证$X$的任意开覆盖有$\sigma$-局部有限开加细.
+  而$X$是Lindel\"{o}f的,所以任意开覆盖有可数子覆盖,
+  自然是$\sigma$-局部有限开加细,所以是仿紧的.
+\end{proof}
+
+\begin{corollary}
+  设拓扑空间X是$T_3$的和$C_2$的,则X是仿紧的.
+\end{corollary}
+\begin{proof}
+  %% PROOF HERE
+  因为X是$C_2$的,设$\mathscr{B}$为X的一个可数拓扑基.则对X的任意开覆盖,
+  $\mathscr{B}$都是这个开覆盖的一个可数子覆盖.由此可知, $C_2$空间都是Lindel\"{o}f空间.
+  再由定理\ref{thm:T3 Lindelof}, 拓扑空间X是仿紧的.
+\end{proof}
+
+上面的推论, 说明了仿紧性, 是比较普遍的, 满足了$T_3$和$C_2$即可.
+而其实很多拓扑空间, 都会满足. 也就是说仿紧性, 及其可应用的范围是很广的.
+
+我们知道, 紧空间的$F_\sigma$子空间不一定是紧空间, 但是对于仿紧性来说, 就不是这样了.
+下面的定理就是说的这样一件事.
+
+\begin{thm}
+  设X是$T_3$的仿紧空间,则X的$F_{\sigma}$子空间是仿紧的.
+\end{thm}
+\begin{proof}
+  %% PROOF HERE
+  (回忆: $F_{\sigma}$子集是可数个闭子集的并.)
+  设$Y$为$X$的$F_\sigma$子空间, 则有
+  \[
+    Y = \bigcup_{i = 1}^{\infty} A_i\,,\,\,\, A_i\text{为X中的闭集}.
+  \]
+  设$\mathscr{C}$为$Y$的一个开覆盖. 因为$Y$是$X$的子空间, 
+  所以存在$X$的开子集族$\mathscr{C}^{'}$, 使得
+  $\mathscr{C} = \{ Y \cap C \mid C \in \mathscr{C}^{'} \}$.
+  接下来, 我们通过$X$的仿紧性, 来构造$\mathscr{C}$的$\sigma$-局部有限开加细.
+  令
+  \[
+    \mathscr{W}_i = \mathscr{C}^{'} \cup \{X \setminus A_i\},
+    \,\,\, i = 1, 2, \dots\,.
+  \]
+  易知, $\mathscr{W}_i$为$X$的开覆盖, 由$X$的仿紧性,
+  $\mathscr{W}_i$存在局部有限开加细$\mathscr{F}_i$. 令
+  \[
+    \mathscr{G}_i = \{ F \in \mathscr{F} \mid F \cap A_i \neq \varnothing \}.
+  \]
+  则$\mathscr{G}_i$是$\mathscr{C}^{'}$的部分加细, 且是$A_i$的开覆盖.
+  令
+  \[
+    \mathscr{H}_i = \{ G \cap Y \mid G \in \mathscr{G}_i \}, 
+  \]
+  则$\mathscr{H}_i$是$\mathscr{C}$的局部有限部分开加细. 令
+  \[
+    \mathscr{U} = \bigcup_{i = 1}^{\infty} \mathscr{H}_i ,
+  \]
+  因为$\mathscr{H}_i$是$A_i$的开覆盖, 所以$\mathscr{U}$是$Y$的开覆盖.
+  因为$\mathscr{H}_i$是$\mathscr{C}$的部分开加细,
+  所以$\mathscr{U}$是$\mathscr{C}$的开加细.
+  而$\mathscr{U}$是$\sigma$-局部有限的, 可以得到$Y$是仿紧的.
+\end{proof}
+
+最后, 我们说明一下乘积空间仿紧性的问题.
+
+\begin{lemma} \label{lemma:projection}
+  设拓扑空间X是紧致的.对任意拓扑空间Y,投射
+  \[
+    p : X \times Y \longrightarrow Y,\,\, p(x, y) = y
+  \]
+  是完备映射.
+\end{lemma}
+\begin{proof}
+  %% PROOF HERE
+  首先, $p$是连续满映射. 对$\forall y \in Y$,
+  $f^{-1}(y) = X \times \{y\}$. 因为$X$是紧的, $\{y\}$也是紧的,
+  所以$f^{-1}(y)$是紧的. 接下来, 只要说明$p$是闭映射即可.
+  假设$A$是$X \times Y$上的闭集, 任取$y_0 \in p(A)^{c}$,
+  则有$X \times \{ y_0 \} \cap A = \varnothing$, 
+  即对$\forall x \in X, (x, y_0) \notin A$.
+  由$A$是闭集, 分别存在$X$和$Y$中的开集$U_x, V_x$,
+  使得$(x, y_0) \in U_x \times V_x, (U_x \times V_x) \cap A = \varnothing$.
+  $\{ V_x \mid x \in X \}$是$Y$的开覆盖, 由$X$的紧性,
+  存在有限子覆盖$\{ U_{x_1}, U_{x_2}, \dots, U_{x_n} \}$.
+  令$V = \bigcap_{i = 1}^{n} V_{x_i}$, 则$V$是$y_0$的开邻域,
+  且$(X \times V) \cap A = \varnothing$,
+  所以$V \cap p(A) = \varnothing$, 所以$p(A)$是闭集.
+  从而$p$是完备映射.
+\end{proof}
+
+\begin{lemma} \label{lemma:perfectly paracompact}
+  X, Y为拓扑空间. 设$f : X \longrightarrow Y$是完备映射, 且Y是仿紧的,
+  则X是仿紧的.
+\end{lemma}
+\begin{proof}
+  %% PROOF HERE
+  设$\mathscr{U}$为$X$的开覆盖. 对$\forall y \in Y, f^{-1}(y)$是$X$的紧子集,
+  从而$\mathscr{U}$存在有限子覆盖$\mathscr{U}_y$,
+  使得$f^{-1}(y) \subseteq \bigcup \mathscr{U}_y$.
+  由$f$的连续性, 存在$y$的邻域$V_y$,
+  使得$f^{-1}(V_y) \subseteq \bigcap \mathscr{U}_y$.
+  $\{ V_y \mid y \in Y \}$是$Y$的开覆盖, 由$Y$的仿紧性,
+  存在局部有限开加细$\mathscr{V}$.
+  对$\forall V \in \mathscr{V}, \exists y(V) \in Y$,
+  使得$V \subseteq V_{y(V)}$. 我们定义
+  \[
+    \mathscr{A} = \{ f^{-1}(V) \cap W \mid V \in \mathscr{V}, W \in \mathscr{U}_{y(V)} \}.
+  \]
+  易知, $\mathscr{A}$是$\mathscr{U}$的开加细.
+  因为$\mathscr{V}$是局部有限的, $f$是完备映射,
+  所以$\{ f^{-1}(V) \mid V \in \mathscr{V} \}$在$X$中是局部有限的.
+  而$\mathscr{U}_{y(V)}$都是有限子集族,
+  所以可得$\mathscr{A}$也是局部有限的. 所以$X$是仿紧的.
+\end{proof}
+
+\begin{proposition}
+  设X是紧空间, Y是仿紧空间, 则$X \times Y$是仿紧空间.
+\end{proposition}
+\begin{proof}
+  %% PROOF HERE
+  记投射
+  \[
+    p : X \times Y \longrightarrow Y,\,\, p(x, y) = y.
+  \]
+  由引理\ref{lemma:projection}, $p$是完备映射.
+  因为Y是仿紧的, 由引理\ref{lemma:perfectly paracompact},
+  $X \times Y$是仿紧的.
+\end{proof}

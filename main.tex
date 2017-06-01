@@ -1,0 +1,137 @@
+% -*- coding: utf-8 -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% 改用 ctex 宏包
+% Last Update: 2013-12-31
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   LaTeX File for Master Thesis of Nanjing University
+%   LaTeX + CJK     南京大学博士（硕士）论文模板
+%   Based on Shangzhi Ye Template for Tsinghua
+%   Version: 1.0
+%   Last Update: 2005-3-31
+%   Author: Guanghong Zuo
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   LaTeX File for Master Thesis of Tsinghua University
+%   LaTeX + CJK     清华大学硕士论文模板
+%   Based on Wang Lei's Template for Tsinghua
+%   Version: 1.0
+%   Last Update: 2004-12-25
+%   Author: Shaozhi Ye
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   LaTeX File for Doctor (Master) Thesis of Tsinghua University
+%   LaTeX + CJK     清华大学博士（硕士）论文模板
+%   Based on Wang Tianshu's Template for XJTU
+%   Version: 1.75
+%   Last Update: 2004-04-12
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Copyright 2002-2004  by  Lei Wang (BaconChina)       (bcpub@sina.com)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   LaTeX File for phd thesis of xi'an Jiao Tong University
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Copyright 2002  by  Wang Tianshu    (tswang@asia.com)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\documentclass[a4paper,fancyhdr,fntef,cap,winfonts,hyperref]{ctexbook}
+\documentclass[a4paper,fancyhdr,fntef,cap,hyperref]{ctexbook}
+\usepackage{shortvrb, makeidx}
+\input{style/package.tex}
+
+\makeindex
+
+\MakeShortVerb{\|}
+
+\topmargin -0.5 true cm
+\oddsidemargin 0 true cm
+\evensidemargin 0 true cm
+\textheight 23 true cm
+\textwidth 16.5 true cm
+
+\setlength{\parskip}{0.75ex plus .2ex minus .5ex}
+\renewcommand{\baselinestretch}{1.2}
+
+\pagestyle{fancy}
+
+ %\CTEXsetup[name={第,节},number={\chinese{section}},format+={\bfseries},beforeskip={-10ex plus -.1ex minus -.1ex},afterskip={1ex plus .1ex minus .1ex}]{section}
+ %\CTEXsetup[name={附录},number={\chinese{chapter}}]{appendix}
+ %\CTEXsetup[name={第,章},number={\arabic{chapter}}]{chapter}
+
+ %\setcounter{secnumdepth}{4}
+ %\CTEXsetup[name={(,)},number={\arabic{paragraph}}]{paragraph}
+
+% pdf 书签设置
+\hypersetup{CJKbookmarks,%
+bookmarksnumbered,%
+colorlinks,%
+linkcolor=black,%
+citecolor=black,%
+plainpages=false,%
+pdfstartview=FitH}
+
+\begin{document}
+
+% 定义所有的eps文件在 figures 子目录下
+\graphicspath{{figures/}}
+
+% 文本格式定义
+\input{style/format.tex}
+
+% 定理环境定义
+\input{style/environments.tex}
+
+% 正文部分
+%--- Preface ------------------------
+
+%封面 (含中文摘要, 英文摘要与目录)
+\input{body/cover}
+
+%符号对照表
+%\include{appendix/notation}
+
+%--- body --------------------------
+
+%正文章节
+\include{body/chap01}
+\include{body/chap02}
+\include{body/chap03}
+\include{body/chap04}
+%\include{body/chap05}
+%\include{body/chap06}
+
+%结论
+%\include{body/chap07}
+
+%附录
+%\begin{appendix}
+%   \input{appendix/appendix1.tex}
+%   \input{appendix/appendix2.tex}
+%  \input{appendix/appendix3.tex}
+%\end{appendix}
+
+%参考文献
+\include{body/reference}
+
+%\wuhao
+%\clearpage
+%\phantomsection
+%\addcontentsline{toc}{chapter}{\bibname}
+
+%\bibliographystyle{unsrt}
+%\bibliography{body/reference}
+
+%发表的文章列表
+%\include{appendix/publications}
+
+%致谢
+\include{body/acknowledgements}
+
+\clearpage
+\end{document}
+
+%%%%%%%%%%%%%%%%%% End of the file  %%%%%%%%%%%%%%%%%%%%%%%%

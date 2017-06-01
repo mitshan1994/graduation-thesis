@@ -1,0 +1,91 @@
+% -*- coding: utf-8 -*-
+\chapter{仿紧空间的一些性质(上)}
+\label{chap02}
+
+在我们得到仿紧空间的定义后, 我们立即就可以得到一些基本的性质.
+这些性质并不需要对仿紧空间的深度刻画就可以得到证明.
+所以在刻画仿紧空间前, 我们把这些性质列出来, 算是初识仿紧性.
+
+下面的命题说明了仿紧性与紧性之间的相似之处.
+
+\begin{proposition}
+  设X是仿紧空间, A是X中的闭集, 则A作为子空间也是仿紧的.
+\end{proposition}
+\begin{proof}
+  设$\mathscr{A}$是$A$在$X$中的一个开覆盖, 则$\mathscr{A} \cup \{ X \setminus A \}$
+  是$X$的一个开覆盖, 由$X$的仿紧性, 存在局部有限开加细$\mathscr{L}$.
+  令$\mathscr{M} = \{ U \in \mathscr{L} \mid U \cap A \neq \varnothing \}$,
+  再令$\mathscr{N} = \{ U \cap A \mid U \in \mathscr{M} \}$,
+  则$\mathscr{N}$为$A$作为子空间, 开覆盖$\{ U \cap A \mid U \in \mathscr{A} \}$
+  的局部有限开加细. 所以A作为子空间也是仿紧的.
+\end{proof}
+
+同样是和紧致性进行类比, 紧致的Hausdorff空间是$T_3$, 我们有下面的定理.
+
+\begin{thm} \label{thm:paracompact T2}
+  仿紧Hausdorff空间是$T_3$的.
+\end{thm}
+\begin{proof}
+  设$X$为仿紧Hausdorff空间, $x_0 \in X, F$为$X$中的闭集,且$x_0 \notin F$.
+  对$\forall y \in F, \exists U_y \text{为开集且} x_0 \notin \overline{U_y}.$
+  则$\{ U_y \mid y \in F\} \cup \{ X \setminus F \}$是$X$的一个开覆盖,由$X$的仿紧性,
+  存在局部有限开加细$\mathscr{V} = \{ V_j \mid j \in J \}$.
+  存在$x$的开邻域$B$,存在有限集$J^{'} \subseteq J$,使得$\forall j \in J \setminus J^{'},
+  V_j \cap B = \varnothing$.对$\forall j \in J^{'}, \exists y_j, \text{使得}
+  V_j \subseteq U_{y_j}$.而$x_0 \notin \overline{U_{y_j}}, \text{所以} x_0 \notin \overline{V_j}$.
+  我们可以观察到,$\mathscr{V}\text{中的元素要么包含在某个}U_y\text{中},\text{要么包含在} X \setminus F$中.
+  令$\mathscr{A} = \{ V_j \in \mathscr{V} \mid V_j \cap F \neq \varnothing \}$,是F的一个开覆盖.
+  再由上面的观察,有$x_0 \notin \bigcup \mathscr{A}$.而$\mathscr{A}$中只有有限个元素与B相交,
+  且$x_0$不属于这有限个元素的闭包.所以存在$x_0$的开邻域$C \subseteq B$,使得$C \cap \bigcup \mathscr{A}
+  = \varnothing$.所以$X$是$T_3$的.
+\end{proof}
+
+\begin{lemma} \label{lemma:local finite close union}
+  若$\{ U_i \mid i \in I\}$是一个局部有限的子集族,则
+  \[
+    \bigcup_{i \in I}\overline{U_i} = \overline{\bigcup_{i \in I}U_i} \,\,.
+  \]
+\end{lemma}
+\begin{proof}
+  (1) $x \in \bigcup_{i \in I}\overline{U_i} \Longrightarrow x \in \overline{\bigcup_{i \in I}U_i}\,\,$:
+  由条件, $\exists i_0 \in I$, 使得$x \in \overline{U_{i_0}}$,
+  从而自然的, $x \in \overline{\bigcup_{i \in I}U_i}$.\newline
+  (2) $x \in \overline{\bigcup_{i \in I}U_i} \Longrightarrow x \in \bigcup_{i \in I}\overline{U_i}\,\,$:
+  (反证)假设$x \notin \bigcup_{i \in I}\overline{U_i}$.
+  由局部有限,存在$x$的开邻域$A$,使得对$i \notin \{i_1, i_2, ..., i_N \} \subseteq I$,
+  有$A \cap U_i = \varnothing$. 记$I^{'} = \{i_1, i_2, ..., i_N \}$,
+  则对$\forall i \in I^{'}, x_0 \notin \overline{U_i}$. 
+  令$B = A \cap \overline{U_{i_1}}^c \cap \overline{U_{i_2}}^c \cap \cdots \cap \overline{U_{i_N}}^c$,
+  则$B$为非空开集, $x_0 \in B$, 且对$\forall i \in I, B \cap U_i = \varnothing$.
+  所以$B \cap \bigcup_{i \in I} U_i = \varnothing$.
+  再由$B$是开集, 有$B \cap \overline{\bigcup_{i \in I} U_i} = \varnothing$.
+  推出$x \notin \overline{\bigcup_{i \in I} U_i}$, 矛盾.
+\end{proof}
+
+这个引理其实就是说, 局部有限集族是闭包保持的. 下面的命题在紧致空间的
+对应版本是: 紧致Hausdorff空间是$T_4$的.
+
+\begin{thm}
+  仿紧Hausdorff空间是$T_4$的.
+\end{thm}
+\begin{proof}
+  设$X$是仿紧Hausdorff空间,$A$和$B$是$X$中的闭集,且$A \cap B = \varnothing$.
+  对$\forall a \in A$,由定理\ref{thm:paracompact T2},
+  $\exists$开集$U_a$,使得$\overline{U_a} \cap B = \varnothing$.
+  令$\mathscr{A} = \{ U_a \mid a \in A \} \cup \{ X \setminus A \}$,
+  则$\mathscr{A}$为$X$的一个开覆盖,由$X$的仿紧性,
+  存在局部有限开加细$\mathscr{V} = \{ V_j \mid j \in J \}$.
+  令$J^{'} = \{ j \in J \mid V_j \cap A \neq \varnothing \}$,
+  则$\mathscr{V}^{'} = \{ V_j \mid j \in J^{'} \}$是$A$的一个开覆盖.
+  且对$\forall j \in J^{'}, \exists a \in A$,使得$V_j \subseteq U_a$.
+  所以$\overline{V_j} \cap B = \varnothing, \forall j \in J^{'}$.
+  因为$\mathscr{V}^{'}$是局部有限的,由引理\ref{lemma:local finite close union},
+  $\overline{\bigcup_{j \in J^{'}}V_j} = \bigcup_{j \in J^{'}} \overline{V_j}$.
+  所以$B \cap \overline{\bigcup_{j \in J^{'}}V_j} = \varnothing$.
+  所以$X$是$T_4$的.
+\end{proof}
+
+从上面的性质可以看出, 仿紧性与紧致性是很类似的.
+事实上, 仿紧性就是对紧致性放松了一些条件. 仿紧空间不一定是紧的,
+比如, 自然数集作为一个离散的拓扑空间, 是仿紧的(通过下面的刻画可以知道).
+但是却不是紧的.

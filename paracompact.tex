@@ -1,0 +1,600 @@
+% -*- coding: utf-8 -*-
+%% compile with xelatex (version: TeX Live 2016 on Ubuntu 16.04)
+\documentclass[a4paper,UTF8]{ctexart}
+
+\usepackage{amsmath}
+\usepackage{amsfonts} % 整数集符号
+\usepackage{amssymb} % 空集符号\varnothing
+\usepackage{mathrsfs} % 花写符号\mathscr
+\usepackage{amstext} % \text
+\usepackage{mathtools} % 定义符号 :=
+\usepackage{amsthm} % proof env
+\usepackage{biblatex}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{thm}[theorem]{定理} % 中文定理
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{condition}[theorem]{条件}
+
+\title{仿紧空间的性质与刻画}
+\author{Mit Shan}
+\date{}
+
+\begin{document}
+
+\maketitle{}
+
+%% 摘要
+\begin{abstract}
+  本文主要讨论、总结一些关于仿紧拓扑空间的刻画和性质.
+  主要证明在满足$T_3$公理的前提下,几个与拓扑空间仿紧性等价的条件,
+  比如其中之一是:拓扑空间$X$是仿紧的,当且仅当$X$的每个开覆盖有$\sigma-$局部有限开加细.
+  在完成仿紧性质的基本刻画后,给出几个仿紧空间的性质,使仿紧性不再那么神秘.
+\end{abstract}
+
+\section{预备及定义}
+为了方便, 下面我们集中给出本文用的一些定义以及一些记号.
+
+\begin{definition} \label{def:regular space}
+  设X为拓扑空间.
+  \begin{enumerate}
+  \item 若X满足$T_2$公理,则称X为\emph{Hausdorff}空间.
+  \item 若X满足$T_3$公理,则称X为\emph{正则}空间.
+  \item 若X满足$T_4$公理,则称X为\emph{正规}空间.
+  \end{enumerate}
+\end{definition}
+
+\begin{definition} \label{def:lindelof}
+  拓扑空间X称为\emph{Lindel\"{o}f}的,如果X的任意开覆盖都有可数子覆盖.
+\end{definition}
+
+\begin{definition} \label{def:countably compact}
+  拓扑空间X称为\emph{可数紧}的,如果X的任意可数开覆盖存在有限子覆盖.
+\end{definition}
+
+\begin{definition} \label{def:refinement}
+  X为一拓扑空间.$\mathscr{U}, \mathscr{V}$为X的两个覆盖.
+  称$\mathscr{V}$为$\mathscr{U}$的一个\emph{加细},如果
+  \begin{equation*}
+    \forall V \in \mathscr{V}, \exists U \in \mathscr{U}, \text{使得}
+    V \subseteq U, \text{且} \newline  %% 这里最好换个行
+    \bigcup \mathscr{V} = \bigcup \mathscr{U}.
+  \end{equation*}
+\end{definition}
+
+\begin{definition} \label{def:local finite}
+  X为一拓扑空间,$\mathscr{A}$为X的一个子集族.称$\mathscr{A}$在X中是\emph{局部有限}的,如果
+  \begin{equation*}
+    \forall x \in X, \exists x \text{的邻域}U,\text{使得}
+    \{A \in \mathscr{A} \mid A \cap U \neq \varnothing \}\text{为有限集}.
+  \end{equation*}
+\end{definition}
+
+\begin{definition} \label{def:sigma local finit}
+  X为一拓扑空间,$\mathscr{A}$为X的一个子集族.
+  称$\mathscr{A}$在X中是\emph{$\sigma$-局部有限}的,如果$\mathscr{A}$是可数多个局部有限族的并.
+\end{definition}
+
+\begin{definition} \label{def:discrete}
+  拓扑空间X的子集族$\mathscr{U}$称为\emph{离散的}, 如果对任意$x \in X$,
+  存在$x$的邻域$A$, 使得$A$最多与$\mathscr{U}$中的一个元素相交非空.
+\end{definition}
+
+\begin{definition} \label{def:closure-preserving}
+  设$\mathscr{U}$为拓扑空间X的子集族, 称$\mathscr{U}$为\emph{闭包保持}的, 如果
+  \[
+    \bigcup \{ \overline{U} \mid U \in \mathscr{U} \}
+    = \overline{\bigcup \{ U \mid U \in \mathscr{U} \}}.
+  \]
+\end{definition}
+
+%% 仿紧的定义
+\begin{definition} \label{def:paracompact}
+  拓扑空间X是\emph{仿紧}的,如果它的任意开覆盖都有局部有限开加细.
+\end{definition}
+紧空间是仿紧空间,因为紧空间的任意开覆盖存在有限子覆盖,从而是局部有限的,子覆盖也是一个开加细,所以是仿紧的.
+
+\begin{definition}
+  设X, Y为拓扑空间,称映射$f : X \longrightarrow Y$为\emph{完备的},
+  如果f为闭的连续满映射,且对$\forall y \in Y, f^{-1}(y)$是X的紧子集.
+\end{definition}
+
+\section{仿紧空间的一些性质(上)}
+在我们得到仿紧空间的定义后, 我们立即就可以得到一些基本的性质.
+这些性质并不需要对仿紧空间的深度刻画就可以得到证明.
+所以在刻画仿紧空间前, 我们把这些性质列出来, 算是初识仿紧性.
+
+下面的命题说明了仿紧性与紧性之间的相似之处.
+
+\begin{proposition}
+  设X是仿紧空间, A是X中的闭集, 则A作为子空间也是仿紧的.
+\end{proposition}
+\begin{proof}
+  设$\mathscr{A}$是$A$在$X$中的一个开覆盖, 则$\mathscr{A} \cup \{ X \setminus A \}$
+  是$X$的一个开覆盖, 由$X$的仿紧性, 存在局部有限开加细$\mathscr{L}$.
+  令$\mathscr{M} = \{ U \in \mathscr{L} \mid U \cap A \neq \varnothing \}$,
+  再令$\mathscr{N} = \{ U \cap A \mid U \in \mathscr{M} \}$,
+  则$\mathscr{N}$为$A$作为子空间, 开覆盖$\{ U \cap A \mid U \in \mathscr{A} \}$
+  的局部有限开加细. 所以A作为子空间也是仿紧的.
+\end{proof}
+
+同样是和紧致性进行类比, 紧致的Hausdorff空间是$T_3$, 我们有下面的定理.
+
+\begin{thm} \label{thm:paracompact T2}
+  仿紧Hausdorff空间是$T_3$的.
+\end{thm}
+\begin{proof}
+  设$X$为仿紧Hausdorff空间, $x_0 \in X, F$为$X$中的闭集,且$x_0 \notin F$.
+  对$\forall y \in F, \exists U_y \text{为开集且} x_0 \notin \overline{U_y}.$
+  则$\{ U_y \mid y \in F\} \cup \{ X \setminus F \}$是$X$的一个开覆盖,由$X$的仿紧性,
+  存在局部有限开加细$\mathscr{V} = \{ V_j \mid j \in J \}$.
+  存在$x$的开邻域$B$,存在有限集$J^{'} \subseteq J$,使得$\forall j \in J \setminus J^{'},
+  V_j \cap B = \varnothing$.对$\forall j \in J^{'}, \exists y_j, \text{使得}
+  V_j \subseteq U_{y_j}$.而$x_0 \notin \overline{U_{y_j}}, \text{所以} x_0 \notin \overline{V_j}$.
+  我们可以观察到,$\mathscr{V}\text{中的元素要么包含在某个}U_y\text{中},\text{要么包含在} X \setminus F$中.
+  令$\mathscr{A} = \{ V_j \in \mathscr{V} \mid V_j \cap F \neq \varnothing \}$,是F的一个开覆盖.
+  再由上面的观察,有$x_0 \notin \bigcup \mathscr{A}$.而$\mathscr{A}$中只有有限个元素与B相交,
+  且$x_0$不属于这有限个元素的闭包.所以存在$x_0$的开邻域$C \subseteq B$,使得$C \cap \bigcup \mathscr{A}
+  = \varnothing$.所以$X$是$T_3$的.
+\end{proof}
+
+\begin{lemma} \label{lemma:local finite close union}
+  若$\{ U_i \mid i \in I\}$是一个局部有限的子集族,则
+  \[
+    \bigcup_{i \in I}\overline{U_i} = \overline{\bigcup_{i \in I}U_i} \,\,.
+  \]
+\end{lemma}
+\begin{proof}
+  (1) $x \in \bigcup_{i \in I}\overline{U_i} \Longrightarrow x \in \overline{\bigcup_{i \in I}U_i}\,\,$:
+  由条件, $\exists i_0 \in I$, 使得$x \in \overline{U_{i_0}}$,
+  从而自然的, $x \in \overline{\bigcup_{i \in I}U_i}$.\newline
+  (2) $x \in \overline{\bigcup_{i \in I}U_i} \Longrightarrow x \in \bigcup_{i \in I}\overline{U_i}\,\,$:
+  (反证)假设$x \notin \bigcup_{i \in I}\overline{U_i}$.
+  由局部有限,存在$x$的开邻域$A$,使得对$i \notin \{i_1, i_2, ..., i_N \} \subseteq I$,
+  有$A \cap U_i = \varnothing$. 记$I^{'} = \{i_1, i_2, ..., i_N \}$,
+  则对$\forall i \in I^{'}, x_0 \notin \overline{U_i}$. 
+  令$B = A \cap \overline{U_{i_1}}^c \cap \overline{U_{i_2}}^c \cap \cdots \cap \overline{U_{i_N}}^c$,
+  则$B$为非空开集, $x_0 \in B$, 且对$\forall i \in I, B \cap U_i = \varnothing$.
+  所以$B \cap \bigcup_{i \in I} U_i = \varnothing$.
+  再由$B$是开集, 有$B \cap \overline{\bigcup_{i \in I} U_i} = \varnothing$.
+  推出$x \notin \overline{\bigcup_{i \in I} U_i}$, 矛盾.
+\end{proof}
+
+这个引理其实就是说, 局部有限集族是闭包保持的. 下面的命题在紧致空间的
+对应版本是: 紧致Hausdorff空间是$T_4$的.
+
+\begin{thm}
+  仿紧Hausdorff空间是$T_4$的.
+\end{thm}
+\begin{proof}
+  设$X$是仿紧Hausdorff空间,$A$和$B$是$X$中的闭集,且$A \cap B = \varnothing$.
+  对$\forall a \in A$,由定理\ref{thm:paracompact T2},
+  $\exists$开集$U_a$,使得$\overline{U_a} \cap B = \varnothing$.
+  令$\mathscr{A} = \{ U_a \mid a \in A \} \cup \{ X \setminus A \}$,
+  则$\mathscr{A}$为$X$的一个开覆盖,由$X$的仿紧性,
+  存在局部有限开加细$\mathscr{V} = \{ V_j \mid j \in J \}$.
+  令$J^{'} = \{ j \in J \mid V_j \cap A \neq \varnothing \}$,
+  则$\mathscr{V}^{'} = \{ V_j \mid j \in J^{'} \}$是$A$的一个开覆盖.
+  且对$\forall j \in J^{'}, \exists a \in A$,使得$V_j \subseteq U_a$.
+  所以$\overline{V_j} \cap B = \varnothing, \forall j \in J^{'}$.
+  因为$\mathscr{V}^{'}$是局部有限的,由引理\ref{lemma:local finite close union},
+  $\overline{\bigcup_{j \in J^{'}}V_j} = \bigcup_{j \in J^{'}} \overline{V_j}$.
+  所以$B \cap \overline{\bigcup_{j \in J^{'}}V_j} = \varnothing$.
+  所以$X$是$T_4$的.
+\end{proof}
+
+从上面的性质可以看出, 仿紧性与紧致性是很类似的.
+事实上, 仿紧性就是对紧致性放松了一些条件. 仿紧空间不一定是紧的,
+比如, 自然数集作为一个离散的拓扑空间, 是仿紧的(通过下面的刻画可以知道).
+但是却不是紧的.
+
+\section{$T_3$仿紧空间的一些刻画}
+接下来, 我们进入本文的正题, 就是对仿紧空间(附加上一些分离公理)的刻画,
+使仿紧性质更加清晰一些, 而不仅仅只是个定义.
+
+\begin{thm} \label{thm:paracompact sigma finite}
+  设X是$T_3$空间,则下面各条件等价:
+  \begin{enumerate}
+  \item X是仿紧的;
+  \item X的任意开覆盖有$\sigma$-局部有限开加细;
+  \item X的任意开覆盖有局部有限加细;
+  \item X的任意开覆盖有局部有限闭加细.
+  \end{enumerate}
+\end{thm}
+\begin{proof}
+  %% PROOF HERE
+  (1) $\Rightarrow$ (2) :
+  由仿紧的定义, 是显然的.
+  
+  (2) $\Rightarrow$ (3) :
+  设$\mathscr{U} = \bigcup_{i = 0}^{\infty} \mathscr{U}_i$,
+  其中$\mathscr{U}_i$是局部有限(非空)开集族.
+  对$\forall i \in \mathbb{N}$, $\forall U \in \mathscr{U}_i$, 记
+  \[
+    C(i, U) = U \setminus \bigcup_{k = 0}^{i - 1} \mathscr{U}_k,
+  \]
+  \[
+    \mathscr{V}_i = \{ C(i, U) \mid U \in \mathscr{U}_i \}.
+  \]
+  其中$\mathscr{V}_0 = \mathscr{U}_0$.
+  下面证$\mathscr{V} = \bigcup_{i = 0}^{\infty} \mathscr{V}_i$是$\mathscr{U}$的局部有限加细.
+  对$\forall x \in X$,
+  记$n(x) = \text{min}\{ i \in \mathbb{N} \mid x \in \bigcup \mathscr{U}_i \}$.
+  即存在$U_x \in \mathscr{U}_{n(x)}$, 使得$x \in U_x$.
+  所以有$x \in C(n(x), U_x)$, $\bigcup \mathscr{V} = X$, $\mathscr{V}$是$\mathscr{U}$的加细.
+  接着, 对$\forall i > n(x)$, 有$U_x \cap \bigcup V_i = \varnothing$.
+  对$\forall i \leq n(x), \exists x$的领域$A_i$,
+  最多只与$\mathscr{U}_i$中的有限个元素相交,
+  因此也最多只与$\mathscr{V}_i$中的有限个元素相交.
+  所以$x$存在邻域$U_x \cap \bigcap_{i = 0}^{n(x)} A_i$最多和$\mathscr{V}$中的有限个元素相交.
+
+  (3) $\Rightarrow$ (4) :
+  设$\mathscr{U}$是X的一个开覆盖.
+  对$\forall x \in X, \exists U_x \in \mathscr{U},
+  $使得$x \in U_x, $则$x \notin U_x^c, U_x^c$为闭集.
+  再由$X$满足$T_3$公理, $\exists $开集$V_x$, 使得$\overline{V_x} \subseteq U_x$.
+  $\mathscr{V} = \{ V_x \mid x \in X \}$是$X$的一个开覆盖,
+  而$\mathscr{V}^{'} = \{ \overline{V} \mid V \in \mathscr{V} \}$是$\mathscr{U}$的加细.
+  由条件, $\mathscr{V}$有局部有限加细$\mathscr{W} = \{ W_j \mid j \in J \}$.
+  因为$\mathscr{V}^{'}$是闭覆盖,
+  所以$\mathscr{W}^{'} = \{ \overline{W} \mid W \in \mathscr{W} \}$
+  是$\mathscr{V}^{'}$的局部有限闭加细, 从而也是$\mathscr{U}$的局部有限闭加细.
+  
+  (4) $\Rightarrow$ (1) :
+  设$\mathscr{A}$为$X$的一个开覆盖, 由条件,
+  $\mathscr{A}$存在局部有限闭加细$\mathscr{B}$.
+  对$\forall x \in X, \exists x$的邻域$C_x$, 只与$\mathscr{B}$中有限个元素相交.
+  记$\mathscr{C} = \{ C_x \mid x \in X \}$, 则$\mathscr{C}$为$X$的一个开覆盖.
+  再由条件, $\mathscr{C}$存在局部有限闭加细$\mathscr{D}$.
+  对$\forall B \in \mathscr{B},$ 
+  记$B^{'} = X \setminus \bigcup \{ D \in \mathscr{D} \mid D \cap B = \varnothing \}$.
+  能看出, $B^{'}$为开集且$B \subseteq B^{'}$.
+  对$\forall B \in \mathscr{B}, D \in \mathscr{D}$,
+  我们有$B^{'} \cap D = \varnothing$当且仅当$B \cap D = \varnothing$.
+  对$\forall B \in \mathscr{B}, \exists A_B \in \mathscr{A}$,
+  使得$B \subseteq A_B$. 记$\mathscr{U} = \{ B^{'} \cap A_B \mid B \in \mathscr{B} \}$.
+  因为对$\forall B \in \mathscr{B}, \exists U \in \mathscr{U},$ 
+  使得$B \subseteq U$, 所以$\mathscr{U}$为$X$的一个开覆盖, 
+  从而$\mathscr{U}$是$\mathscr{A}$的一个开加细.
+  而$\forall D \in \mathscr{D}, D$只与$\mathscr{U}$中有限个元素相交.
+  加上$\mathscr{D}$是$X$的覆盖, 得出$\mathscr{U}$是局部有限的.
+  所以$\mathscr{U}$是$\mathscr{A}$的局部有限开加细, 所以$X$是仿紧的.
+\end{proof}
+
+这个定理说明了, 局部有限开加细其实是一个比较强的条件, 是可以减弱的,
+比如是$\sigma$-局部有限的开加细就可以了. 对于一些特定的情况下,
+这个定理对于判断某些空间是不是仿紧的, 就比较方便了.
+
+上面的条件还可以进一步减弱一些. 因为局部有限或者$\sigma$-局部有限,
+同闭包保持比起来, 可能看上去还是要强一些的, 因为前者涉及到局部的性质,
+而后者并没有在明处涉及到.
+
+下面我们来看一看闭包保持(开/闭)加细和仿紧之间的联系.
+
+\begin{thm} \label{thm:closure-preserving}
+  设X是正则的Hausdorff空间,则下面各条件等价:
+  \begin{enumerate}
+  \item X是仿紧的;
+  \item X的任意开覆盖有闭包保持开加细;
+  \item X的任意开覆盖有闭包保持加细;
+  \item X的任意开覆盖有闭包保持闭加细.
+  \end{enumerate}
+\end{thm}
+
+该定理证明的主要部分是(4) $\Rightarrow$ (1), 而(1) $\Rightarrow$ (2),
+(2) $\Rightarrow$ (3), (3) $\Rightarrow$ (4)相对来说容易一些.
+为了证明(4) $\Rightarrow$ (1), 我们需要先证明几个引理.
+为了方便, 我们把频繁出现的条件列出来, 避免重复说明.
+
+\begin{condition} \label{condition:closure-preserving}
+  空间$X$是正则Hausdorff空间, 且$X$的任意开覆盖都有闭包保持闭加细.
+\end{condition}
+
+\begin{lemma} \label{lemma:indexed closure-preserving}
+  在条件\ref{condition:closure-preserving} 下,
+  如果$\{ U_{\alpha} \}_{\alpha \in A}$是X的一个开覆盖,
+  则X存在一个闭包保持闭覆盖$\{ C_{\alpha} \}_{\alpha \in A}$,
+  使得$\forall \alpha \in A, C_{\alpha} \subseteq U_{\alpha}$.
+\end{lemma}
+\begin{proof}
+  %% PROOF HERE
+  由条件, $\{ U_{\alpha} \}_{\alpha \in A}$存在一个闭包保持闭加细$\mathscr{V}$.
+  对$\forall V \in \mathscr{V},$ 选取$\alpha(V) \in A$, 使得$V \subseteq U_{\alpha(V)}$.
+  对$\forall \alpha \in A$, 定义
+  \[
+    C_{\alpha} = \bigcup \{ V \in \mathscr{V} \mid \alpha(V) = \alpha \}.
+  \]
+  则$C_{\alpha} \subseteq U_{\alpha}$. 由$\mathscr{V}$是闭包保持闭加细,
+  $C_{\alpha}$是闭集, 且$\{ C_{\alpha} \}_{\alpha \in A}$是闭包保持的.
+\end{proof}
+
+\begin{lemma} \label{lemma:regular}
+  在条件\ref{condition:closure-preserving} 下, X是正规的.
+\end{lemma}
+\begin{proof}
+  %% PROOF HERE
+  设$E_1, E_2$是$X$中的两个互不相交的闭集,
+  则$\{ X \setminus E_1, X \setminus E_2 \}$是X的一个开覆盖.
+  由引理\ref{lemma:indexed closure-preserving},
+  $X$存在闭覆盖$\{ C_1, C_2 \}$,
+  使得$C_1 \subseteq X \setminus E_1, C_2 \subseteq X \setminus E_2$.
+  则$E_1 \subseteq X \setminus C_1, E_2 \subseteq X \setminus C_2$,
+  而$(X \setminus C_1) \cap (X \setminus C_2) = \varnothing$,
+  且都是开集. 所以X是正规的.
+\end{proof}
+
+\begin{lemma} \label{lemma:Dowker}
+  \text{(Dowker).} 设X是正规的, $\{ V_\gamma \}_{\gamma \in \Gamma}$是X的离散的开子集族.
+  如果对$\forall \gamma \in \Gamma, \text{有}D_{\gamma} \subseteq V_{\gamma}$,
+  且$\bigcup_{\gamma \in \Gamma} D_{\gamma}$是闭集,
+  则X存在一个离散的开子集族$\{ G_{\gamma} \}_{\gamma \in \Gamma}$, 使得
+  \[
+    D_{\gamma} \subseteq G_{\gamma} \subseteq V_{\gamma}, \,\,\, \forall \gamma \in \Gamma.
+  \]
+\end{lemma}
+\begin{proof}
+  %% PROOF HERE
+  记
+  \[
+    A = \{ x \in X \mid x \text{存在邻域至多与一个} V_{\gamma} \text{相交非空} \}.
+  \]
+  容易得到$A$为开集, 且
+  $\bigcup_{\gamma \in \Gamma} D_\gamma \subseteq A$.
+  因为$\bigcup_{\gamma \in \Gamma} D_\gamma$是闭集, $X$是正规的,
+  所以存在$X$中开集$B$, 使得
+  \[
+    \bigcup_{\gamma \in \Gamma} D_\gamma \subseteq B \subseteq \overline{B} \subseteq A.
+  \]
+  令
+  \[
+    G_\gamma = V_\gamma \cap B.
+  \]
+  则$G_\gamma$是开集, 且对$\forall \gamma \in \Gamma,
+  D_\gamma \subseteq G_\gamma \subseteq V_\gamma$.
+  由$\{ V_\gamma \}_{\gamma \in \Gamma}$是离散的, $\{ G_\gamma \}_{\gamma \in \Gamma}$也是离散的.
+\end{proof}
+
+有了上面的准备, 我们终于可以开始这个定理的证明了.
+
+\begin{proof}[证明(定理\ref{thm:closure-preserving})]
+  %% PROOF HERE
+  (4) $\Rightarrow$ (1): 设$\{ U_{\alpha} \}_{\alpha \in A}$是$X$的一个开覆盖, 且$A$是一个良序指标集.
+  我们需要证明的是$\{ U_{\alpha} \}_{\alpha}$存在$\sigma$-局部有限开加细.
+  
+  \underline{Step 1}.
+  我们先构造一列子集族, 对$\forall i \in \mathbb{N}$,
+  $\{ C_{\alpha, i} \}$满足下面的条件: \newline
+  \textcircled{a}
+    $\{ C_{\alpha, i} \}_{\alpha \in A}$是$X$的闭包保持闭覆盖,
+    且对$\forall \alpha \in A, C_{\alpha, i} \subseteq U_{\alpha}$.\newline
+  \textcircled{b}
+    $C_{\alpha, i+1} \cap C_{\beta, i} = \varnothing,$ 对$\forall \alpha > \beta$.\newline
+  构造方法如下. 由引理\ref{lemma:indexed closure-preserving},
+  存在$\{ C_{\alpha, 0} \}_{\alpha \in A}$满足\textcircled{a}(自然地满足\textcircled{b}),
+  此时$i = 0$. 假设对$i \leq n, \{ C_{\alpha, i} \}_{\alpha \in A}$均满足
+  \textcircled{a}和\textcircled{b}. 下面我们构造$\{ C_{\alpha, n+1} \}_{\alpha \in A}$.
+  我们定义
+  \[
+    U_{\alpha, n+1} = U_\alpha - ( \bigcup_{\beta < \alpha} C_{\beta, n} ),\,\,\,\forall \alpha \in A.
+  \]
+  因为$\{ C_{\alpha, n} \}_{\alpha \in A}$是闭包保持的, 所以$U_{\alpha, n+1}$为开集.
+  对$\forall x \in X$, 存在最小的$\alpha_0$, 使得$x \in U_{\alpha_0}$,
+  同时, $x \in U_{\alpha_0, n+1}$, 所以$\{ U_{\alpha, n+1} \}_{\alpha \in A}$是X的一个开覆盖.
+  再由引理\ref{lemma:indexed closure-preserving},
+  存在一个闭包保持闭覆盖$\{ C_{\alpha, n+1} \}_{\alpha \in A}$,
+  使得对$\forall \alpha \in A, C_{\alpha, n+1} \subseteq U_{\alpha, n+1}$,
+  从而$C_{\alpha, n+1} \subseteq U_{\alpha}$, 因此\textcircled{a}满足.
+  由$U_{\alpha, n+1}$的定义,
+  有$U_{\alpha, n+1} \cap C_{\beta, n} = \varnothing, \forall \beta < \alpha$.
+  因为$C_{\alpha, n+1} \subseteq U_{\alpha, n+1}$, 
+  所以$C_{\alpha, n+1} \cap C_{\beta, n} = \varnothing, \forall \beta < \alpha$.
+  \textcircled{b}也满足了.构造成功.
+
+  \underline{Step 2}.
+  我们继续构造一列子集族. 对$\forall \alpha \in A, i \in \mathbb{N}$, 定义
+  \[
+    V_{\alpha, i} = X \setminus (\bigcup_{\beta \neq \alpha} C_{\beta, i}).
+  \]
+  我们有\newline
+  \textcircled{c}
+    $\{ V_{\alpha, i} \mid \alpha \in A, i \in \mathbb{N} \}$是$X$的一个开覆盖,
+    且对$\forall \alpha \in A, i \in \mathbb{N}, V_{\alpha, i} \subseteq U_\alpha$. \newline
+  \textcircled{d}
+    $V_{\alpha, i} \cap V_{\beta, i} = \varnothing$, 当$\alpha \neq \beta$时. \newline
+  因为$\{ C_{\alpha, i} \}_{\alpha \in A}$是闭包保持的闭覆盖, 所以$V_{\alpha, i}$是开集,
+  且我们有$V_{\alpha, i} \subseteq C_{\alpha, i} \subseteq U_{\alpha, i}, \forall \alpha, i$.
+  再由$V_{\alpha, i}$的定义, 可知\textcircled{d}满足.
+  对于\textcircled{c}, 我们还需要证明
+  $\{ V_{\alpha, i} \mid \alpha \in A, i \in \mathbb{N} \}$是$X$的一个覆盖.
+  任取$x \in X$, 由集合$A$是良序的, 令
+  \[
+    \alpha_i = \min \{ \alpha \in A \mid x \in C_{\alpha, i} \}, \,\,\, i \in \mathbb{N}.
+  \]
+  再选取一个自然数$k$, 使得
+  \[
+    \alpha_k = \min \{ \alpha_i \mid i \in \mathbb{N} \}.
+  \]
+  由定义, 对$\forall \alpha < \alpha_k, x \notin C_{\alpha, i}$.
+  对$\forall \alpha > \alpha_k$, 由\textcircled{b},
+  $C_{\alpha, k+1} \cap C_{\alpha_k, k} = \varnothing$,
+  所以$x \notin C_{\alpha, k+1}$. 但由于$\{ C_{\alpha, k+1} \}_{\alpha \in A}$是$X$的一个覆盖,
+  所以$x$属于$C_{\alpha_k, k+1}$. 再由$V_{\alpha_k, k+1}$的定义,
+  有$x \in V_{\alpha_k, k+1}$.
+  所以$\{ V_{\alpha, i} \mid \alpha \in A, i \in \mathbb{N} \}$是$X$的覆盖.
+
+  \underline{Step 3}.
+  由引理\ref{lemma:indexed closure-preserving},
+  存在$X$的闭包保持闭覆盖$\{ D_{\alpha, i} \mid \alpha \in A, i \in \mathbb{N}$,
+  使得对$\forall \alpha, i, D_{\alpha, i} \subseteq V_{\alpha, i}$.
+  由引理\ref{lemma:regular}, X是正规的, 对$\forall i$, 由引理\ref{lemma:Dowker},
+  存在离散开子集族$\{ G_{\alpha, i} \}_{\alpha \in A}$, 使得
+  \[
+    D_{\alpha, i} \subseteq G_{\alpha, i} \subseteq V_{\alpha, i}, \,\,\, \forall \alpha.
+  \]
+  于是, $\{ G_{\alpha, i} \mid \alpha \in A, i \in \mathbb{N} \}$是
+  $\{ U_\alpha \}_{\alpha \in A}$的$\sigma$-局部有限开加细. 所以$X$是仿紧的.
+
+  (1) $\Rightarrow$ (2) :
+  因为$X$是仿紧的, 所以任意开覆盖存在局部有限开加细.
+  由引理\ref{lemma:local finite close union}, 局部有限子集族是闭包保持的,
+  所以任意开覆盖也存在闭包保持的开加细.
+
+  (2) $\Rightarrow$ (3) :
+  这是显然的.
+
+  (3) $\Rightarrow$ (4) :
+  设$\mathscr{U}$是$X$的一个开覆盖.
+  因为$X$是正则的, 所以存在$X$的开覆盖$\mathscr{V}$, 使得
+  $\{ \overline{V} \mid V \in \mathscr{V} \}$是$\mathscr{U}$的加细.
+  由假设, $\mathscr{V}$存在闭包保持加细$\mathscr{W}$.
+  而$\{ \overline{W} \mid W \in \mathscr{W} \}$是
+  $\{ \overline{V} \mid V \in \mathscr{V} \}$的闭包保持闭加细,
+  所以也是$\mathscr{U}$的闭包保持闭加细.
+\end{proof}
+
+到这里, 我们就已经有了好几个(在一定分离公理下)仿紧性的等价条件了.
+以后判断一个空间是不是仿紧, 也就没有必要只盯着定义来回思考了,
+还可以考虑这么多个等价的条件. 路多了, 总有一条适合你.
+
+\section{仿紧空间的一些性质(下)}
+
+同样是仿紧空间的性质, 和上一个性质的集合不一样,
+这里的性质需要借助上面对仿紧性质的刻画才能够得到.
+这也是为什么会把性质放在两个地方.
+
+\begin{thm} \label{thm:T3 Lindelof}
+  满足$T_3$公理的Lindel\"{o}f空间是仿紧的.
+\end{thm}
+\begin{proof}
+  设$X$是满足$T_3$公理的Lindel\"{o}f空间.
+  由定理\ref{thm:paracompact sigma finite},
+  要证$X$仿紧,只要证$X$的任意开覆盖有$\sigma$-局部有限开加细.
+  而$X$是Lindel\"{o}f的,所以任意开覆盖有可数子覆盖,
+  自然是$\sigma$-局部有限开加细,所以是仿紧的.
+\end{proof}
+
+\begin{corollary}
+  设拓扑空间X是$T_3$的和$C_2$的,则X是仿紧的.
+\end{corollary}
+\begin{proof}
+  %% PROOF HERE
+  因为X是$C_2$的,设$\mathscr{B}$为X的一个可数拓扑基.则对X的任意开覆盖,
+  $\mathscr{B}$都是这个开覆盖的一个可数子覆盖.由此可知, $C_2$空间都是Lindel\"{o}f空间.
+  再由定理\ref{thm:T3 Lindelof}, 拓扑空间X是仿紧的.
+\end{proof}
+
+上面的推论, 说明了仿紧性, 是比较普遍的, 满足了$T_3$和$C_2$即可.
+而其实很多拓扑空间, 都会满足. 也就是说仿紧性, 及其可应用的范围是很广的.
+
+我们知道, $F_\sigma$空间不一定是紧空间, 但是对于仿紧性来说, 就不是这样了.
+下面的定理就是说的这样一件事.
+
+\begin{thm}
+  设X是$T_3$的仿紧空间,则X的$F_{\sigma}$子空间是仿紧的.
+\end{thm}
+\begin{proof}
+  %% PROOF HERE
+  (回忆: $F_{\sigma}$子集是可数个闭子集的并.)
+  设$Y$为$X$的$F_\sigma$子空间, 则有
+  \[
+    Y = \bigcup_{i = 1}^{\infty} A_i\,,\,\,\, A_i\text{为X中的闭集}.
+  \]
+  设$\mathscr{C}$为$Y$的一个开覆盖. 因为$Y$是$X$的子空间, 
+  所以存在$X$的开子集族$\mathscr{C}^{'}$, 使得
+  $\mathscr{C} = \{ Y \cap C \mid C \in \mathscr{C}^{'} \}$.
+  接下来, 我们通过$X$的仿紧性, 来构造$\mathscr{C}$的$\sigma$-局部有限开加细.
+  令
+  \[
+    \mathscr{W}_i = \mathscr{C}^{'} \cup \{X \setminus A_i\},
+    \,\,\, i = 1, 2, \dots\,.
+  \]
+  易知, $\mathscr{W}_i$为$X$的开覆盖, 由$X$的仿紧性,
+  $\mathscr{W}_i$存在局部有限开加细$\mathscr{F}_i$. 令
+  \[
+    \mathscr{G}_i = \{ F \in \mathscr{F} \mid F \cap A_i \neq \varnothing \}.
+  \]
+  则$\mathscr{G}_i$是$\mathscr{C}^{'}$的部分加细, 且是$A_i$的开覆盖.
+  令
+  \[
+    \mathscr{H}_i = \{ G \cap Y \mid G \in \mathscr{G}_i \}, 
+  \]
+  则$\mathscr{H}_i$是$\mathscr{C}$的局部有限部分开加细. 令
+  \[
+    \mathscr{U} = \bigcup_{i = 1}^{\infty} \mathscr{H}_i ,
+  \]
+  因为$\mathscr{H}_i$是$A_i$的开覆盖, 所以$\mathscr{U}$是$Y$的开覆盖.
+  因为$\mathscr{H}_i$是$\mathscr{C}$的部分开加细,
+  所以$\mathscr{U}$是$\mathscr{C}$的开加细.
+  而$\mathscr{U}$是$\sigma$-局部有限的, 可以得到$Y$是仿紧的.
+\end{proof}
+
+最后, 我们说明一下乘积空间仿紧性的问题.
+
+\begin{lemma} \label{lemma:projection}
+  设拓扑空间X是紧致的.对任意拓扑空间Y,投射
+  \[
+    p : X \times Y \longrightarrow Y,\,\, p(x, y) = y
+  \]
+  是完备映射.
+\end{lemma}
+\begin{proof}
+  %% PROOF HERE
+  首先, $p$是连续满映射. 对$\forall y \in Y$,
+  $f^{-1}(y) = X \times \{y\}$. 因为$X$是紧的, $\{y\}$也是紧的,
+  所以$f^{-1}(y)$是紧的. 接下来, 只要说明$p$是闭映射即可.
+  假设$A$是$X \times Y$上的闭集, 任取$y_0 \in p(A)^{c}$,
+  则有$X \times \{ y_0 \} \cap A = \varnothing$, 
+  即对$\forall x \in X, (x, y_0) \notin A$.
+  由$A$是闭集, 分别存在$X$和$Y$中的开集$U_x, V_x$,
+  使得$(x, y_0) \in U_x \times V_x, (U_x \times V_x) \cap A = \varnothing$.
+  $\{ V_x \mid x \in X \}$是$Y$的开覆盖, 由$X$的紧性,
+  存在有限子覆盖$\{ U_{x_1}, U_{x_2}, \dots, U_{x_n} \}$.
+  令$V = \bigcap_{i = 1}^{n} V_{x_i}$, 则$V$是$y_0$的开邻域,
+  且$(X \times V) \cap A = \varnothing$,
+  所以$V \cap p(A) = \varnothing$, 所以$p(A)$是闭集.
+  从而$p$是完备映射.
+\end{proof}
+
+\begin{lemma} \label{lemma:perfectly paracompact}
+  X, Y为拓扑空间. 设$f : X \longrightarrow Y$是完备映射, 且Y是仿紧的,
+  则X是仿紧的.
+\end{lemma}
+\begin{proof}
+  %% PROOF HERE
+  设$\mathscr{U}$为$X$的开覆盖. 对$\forall y \in Y, f^{-1}(y)$是$X$的紧子集,
+  从而$\mathscr{U}$存在有限子覆盖$\mathscr{U}_y$,
+  使得$f^{-1}(y) \subseteq \bigcup \mathscr{U}_y$.
+  由$f$的连续性, 存在$y$的邻域$V_y$,
+  使得$f^{-1}(V_y) \subseteq \bigcap \mathscr{U}_y$.
+  $\{ V_y \mid y \in Y \}$是$Y$的开覆盖, 由$Y$的仿紧性,
+  存在局部有限开加细$\mathscr{V}$.
+  对$\forall V \in \mathscr{V}, \exists y(V) \in Y$,
+  使得$V \subseteq V_{y(V)}$. 我们定义
+  \[
+    \mathscr{A} = \{ f^{-1}(V) \cap W \mid V \in \mathscr{V}, W \in \mathscr{U}_{y(V)} \}.
+  \]
+  易知, $\mathscr{A}$是$\mathscr{U}$的开加细.
+  因为$\mathscr{V}$是局部有限的, $f$是完备映射,
+  所以$\{ f^{-1}(V) \mid V \in \mathscr{V} \}$在$X$中是局部有限的.
+  而$\mathscr{U}_{y(V)}$都是有限子集族,
+  所以可得$\mathscr{A}$也是局部有限的. 所以$X$是仿紧的.
+\end{proof}
+
+\begin{proposition}
+  设X是紧空间, Y是仿紧空间, 则$X \times Y$是仿紧空间.
+\end{proposition}
+\begin{proof}
+  %% PROOF HERE
+  记投射
+  \[
+    p : X \times Y \longrightarrow Y,\,\, p(x, y) = y.
+  \]
+  由引理\ref{lemma:projection}, $p$是完备映射.
+  因为Y是仿紧的, 由引理\ref{lemma:perfectly paracompact},
+  $X \times Y$是仿紧的.
+\end{proof}
+
+\end{document}

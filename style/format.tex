@@ -1,0 +1,418 @@
+% -*- coding: utf-8 -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 主文档 格式定义
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% 将版芯控制在240mm以内, 正文范围控制在220mm以内
+% 将版芯控制在240mm以内, 正文范围控制在220mm以内
+\addtolength{\headsep}{-10pt}          %页眉位置
+%\addtolength{\footskip}{0}         %页脚位置
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  页面设置
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\setlength{\voffset}{-12pt}
+%\setlength{\topmargin}{12pt}
+%\addtolength{\textheight}{22pt}
+%
+%\setlength{\hoffset}{15pt}
+%\setlength{\oddsidemargin}{20pt}
+%\setlength{\evensidemargin}{20pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 公式的精调
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\setlength{\mathindent}{4.7 em}     %左对齐公式缩进量
+
+% \eqnarray如果很长，影响分栏、换行和分页（整块挪动，造成页面空白），
+% 可以设置成为自动调整模式
+\allowdisplaybreaks[4]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%下面这组命令使浮动对象的缺省值稍微宽松一点，从而防止幅度
+%对象占据过多的文本页面，也可以防止在很大空白的浮动页上放置
+%很小的图形。
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.65}
+\renewcommand{\floatpagefraction}{0.60}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%下面这组命令可以使公式编号随着每开始新的一节而重新开始。
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\makeatletter      % '@' is now a normail "letter" for TeX
+%\@addtoreset{eqation}{section}
+%\makeatother       % '@' is restored as a "non-letter" character for TeX
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 重定义字体命令
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 注意win2000没有 simsun,　最好到网上找一个
+% 一些字体是office2000 带的
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\newcommand{\song}{\CJKfamily{song}}    % 宋体   (Windows自带simsun.ttf)
+\newcommand{\fs}{\CJKfamily{fs}}        % 仿宋体 (Windows自带simfs.ttf)
+\newcommand{\kai}{\CJKfamily{kai}}      % 楷体   (Windows自带simkai.ttf)
+\newcommand{\hei}{\CJKfamily{hei}}      % 黑体   (Windows自带simhei.ttf)
+\newcommand{\li}{\CJKfamily{li}}        % 隶书   (Windows自带simli.ttf)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 重定义字号命令
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\newcommand{\yihao}{\zihao{1}}    % 一号, 1.4倍行距
+\newcommand{\erhao}{\zihao{2}}    % 二号, 1.25倍行距
+\newcommand{\xiaoer}{\zihao{-2}}    % 小二, 单倍行距
+\newcommand{\sanhao}{\zihao{3}}    % 三号, 1.5倍行距
+\newcommand{\xiaosan}{\zihao{-3}}    % 小三, 1.5倍行距
+\newcommand{\sihao}{\zihao{4}}    % 四号, 1.5倍行距
+\newcommand{\banxiaosi}{\fontsize{13pt}{19.5pt}\selectfont}    % 半小四, 1.5倍行距
+\newcommand{\xiaosi}{\zihao{-4}}    % 小四, 1.5倍行距
+\newcommand{\dawuhao}{\fontsize{11pt}{11pt}\selectfont}    % 大五号, 单倍行距
+\newcommand{\wuhao}{\zihao{5}}    % 五号, 单倍行距
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 重定义一些正文相关标题
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\theoremstyle{plain} \theorembodyfont{\song\rmfamily}
+%\theoremheaderfont{\hei\rmfamily} \theoremseparator{:}
+%
+%\renewcommand\contentsname{目~~~~~~录}
+%\renewcommand\listfigurename{插图}
+%\renewcommand\listtablename{表格}
+%\renewcommand\indexname{索引}
+%\renewcommand\figurename{图}
+%\renewcommand\tablename{表}
+
+%\newtheorem{definition}{\hei 定义}[chapter]
+%\newtheorem{proposition}[definition]{\hei 命题}
+%\newtheorem{lemma}[definition]{\hei 引理}
+%\newtheorem{theorem}{\hei 定理}[chapter]
+%\newtheorem{axiom}{\hei 公理}
+%\newtheorem{corollary}[definition]{\hei 推论}
+%\newtheorem{exercise}[definition]{}
+
+%\theoremheaderfont{\CJKfamily{hei}\rmfamily}\theorembodyfont{\rmfamily}
+%\theoremstyle{nonumberplain} \theoremseparator{:}
+%\theoremsymbol{$\blacksquare$}
+%\newtheorem{proof}{\hei 证明}
+
+%\theoremsymbol{$\square$}
+%\newtheorem{example}{\hei 例}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 定义页眉和页脚 使用fancyhdr 宏包
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newcommand{\makeheadrule}{%
+%    \makebox[0pt][l]{\rule[.7\baselineskip]{\headwidth}{0.8pt}}%
+%    \vskip-.8\baselineskip}%
+%
+%  \makeatletter
+%  \renewcommand{\headrule}{%
+%    {\if@fancyplain\let\headrulewidth\plainheadrulewidth\fi
+%      \makeheadrule}}%
+%
+%  \pagestyle{fancy}
+%
+%去掉章节标题中的数字
+%\renewcommand{\chaptermark}[1]{\markboth{\chaptername \ #1}{}}
+
+%\fancyhf{}
+%\fancyhead[CO]{\wuhao\leftmark}
+%\fancyhead[CE]{\wuhao\leftmark}
+%\fancyfoot[C,C]{\wuhao\thepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 设置行距和段落间垂直距离
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% 段落之间的竖直距离
+\setlength{\parskip}{3pt plus1pt minus1pt}
+
+% 定义行距
+\renewcommand{\baselinestretch}{1.2}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 修改引用的格式，
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 增加 \ucite 命令使显示的引用为上标形式
+\newcommand{\ucite}[1]{$^{\mbox{\scriptsize \cite{#1}}}$}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 定制浮动图形和表格标题样式
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%添加新的表格控制符，用法与p{xx}相似
+%P{}表示定制表格例的宽度并且使不够长度的居中与同等其他列上对齐
+%M{}表示定制表格例的宽度并且使不够长度的居中与同等其他列中对齐
+%B{}表示定制表格例的宽度并且使不够长度的居中与同等其他列下对齐
+%\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+%\newcolumntype{P}[1]{>{\PreserveBackslash\centering}p{#1}}
+%\newcolumntype{M}[1]{>{\PreserveBackslash\centering}m{#1}}
+%\newcolumntype{B}[1]{>{\PreserveBackslash\centering}b{#1}}
+
+\renewcommand{\captionfont}{\CJKfamily{song}\rmfamily}
+\renewcommand{\captionlabelfont}{\CJKfamily{song}\rmfamily}
+
+% 按清华标准, 去掉图表号后面的:
+%不太清楚南大的标准，所以没改
+\captionsetup{labelsep=blank}
+
+% 按清华标准, 图表标题字体为11pt, 这里写作大五号
+\renewcommand{\captionfont}{\dawuhao}
+
+% 设置Caption的宽度
+\setcaptionmargin{.5in}
+
+% define graph scale
+\def\gs{1.0}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 自定义项目列表标签及格式 \begin{denselist} 列表项 \end{denselist}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{newlist} %自定义新计数器
+\newenvironment{denselist}[1][可改变的列表题目]{%%%%%定义新环境
+\begin{list}{\textbf{\hei #1} \arabic{newlist}：} %%标签格式
+    {
+    \usecounter{newlist}
+     \setlength{\labelwidth}{22pt} %标签盒子宽度
+     \setlength{\labelsep}{0cm} %标签与列表文本距离
+     \setlength{\leftmargin}{0cm} %左右边界
+     \setlength{\rightmargin}{0cm}
+     \setlength{\parsep}{0ex} %段落间距
+     \setlength{\itemsep}{0ex} %标签间距
+     \setlength{\itemindent}{44pt} %标签缩进量
+     \setlength{\listparindent}{22pt} %段落缩进量
+    }}
+{\end{list}}%%%%%
+
+\def\defaultfont{\renewcommand{\baselinestretch}{1.5}
+\fontsize{12pt}{13pt}\selectfont}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 封面、摘要、与目录格式定义 --- by Guanghong Zuo Feng Hua & Lei Wang
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+\def\ctitle#1{\def\@ctitle{#1}}\def\@ctitle{}
+\def\cdegree#1{\def\@cdegree{#1}}\def\@cdegree{}
+\def\cdepart#1{\def\@cdepart{#1}}\def\@cdepart{}
+\def\csubject#1{\def\@csubject{#1}}\def\@csubject{}
+\def\cdirection#1{\def\@cdirection{#1}}\def\@cdirection{}
+\def\cauthor#1{\def\@cauthor{#1}}\def\@cauthor{}
+\def\csupervisor#1{\def\@csupervisor{#1}}\def\@csupervisor{}
+\def\stitle#1{\def\@stitle{#1}}\def\@stitle{}
+\def\cdate#1{\def\@cdate{#1}}\def\@cdate{}
+\long\def\cabstract#1{\long\def\@cabstract{#1}}\long\def\@cabstract{}
+\def\ckeywords#1{\def\@ckeywords{#1}}\def\@ckeywords{}
+
+\def\etitle#1{\def\@etitle{#1}}\def\@etitle{}
+\def\edegree#1{\def\@edegree{#1}}\def\@edegree{}
+\def\edepart#1{\def\@edepart{#1}}\def\@edepart{}
+\def\esubject#1{\def\@esubject{#1}}\def\@esubject{}
+\def\edirection#1{\def\@edirection{#1}}\def\@edirection{}
+\def\eauthor#1{\def\@eauthor{#1}}\def\@eauthor{}
+\def\esupervisor#1{\def\@esupervisor{#1}}\def\@esupervisor{}
+\def\estitle#1{\def\@estitle{#1}}\def\@estitle{}
+\def\eaddress#1{\def\@eaddress{#1}}\def\@eaddress{}
+\def\edate#1{\def\@edate{#1}}\def\@edate{}
+\long\def\eabstract#1{\long\def\@eabstract{#1}}\long\def\@eabstract{}
+\def\ekeywords#1{\def\@ekeywords{#1}}\def\@ekeywords{}
+
+\def\ngrade#1{\def\@ngrade{#1}}\def\@ngrade{}
+\def\snumber#1{\def\@snumber{#1}}\def\@snumber{}
+
+\sloppy
+\pagenumbering{roman}
+
+\def\makecover{
+  \begin{titlepage}
+\includegraphics[width=2.5cm]{njuxh}\\
+    \parbox[t][.5cm][t]{\textwidth}{
+    \begin{center}  \end{center} }
+  \begin{center}
+
+      \parbox[t][5.2cm][t]{\textwidth}{\begin{center} \song
+          \includegraphics[width=5.0cm]{njuwz}\\
+         {\bf\yihao 本~~~科~~~毕~~~业~~~论~~~文\\}
+         \end{center}}
+
+    \parbox[t][3.5cm][t]{\textwidth}{
+    \begin{center}  \end{center} }
+
+
+    \parbox[t][6cm][c]{\textwidth}{\begin{center}
+      \fontsize{16pt}{8pt}\selectfont \song
+      \begin{tabular}{p{4.5em} p{2em} p{4em}@{} p{2.5em} p{6em}}
+    院~~~~~~~~系 & \multicolumn{4}{c}{\@cdepart}\\
+    \cmidrule(r){2-5}\addlinespace[10pt]
+    专~~~~~~~~业 & \multicolumn{4}{c}{\@csubject}\\
+    \cmidrule(r){2-5}\addlinespace[10pt]
+    题~~~~~~~~目 &  \multicolumn{4}{c}{\@ctitle}\\
+    \cmidrule(r){2-5}\addlinespace[10pt]
+    年~~~~~~~~级 &  \multicolumn{2}{c}{\@ngrade} & 学号 & \@snumber\\
+    \cmidrule(r){2-3} \cmidrule(r){5-5}\addlinespace[10pt]
+    学生姓名 & \multicolumn{4}{c}{\@cauthor}\\
+    \cmidrule(r){2-5}\addlinespace[10pt]
+    指导教师 & \multicolumn{2}{c}{\@csupervisor} & 职称 & \@stitle\\
+    \cmidrule(r){2-3} \cmidrule(r){5-5}\addlinespace[10pt]
+    \multicolumn{2}{l}{论文提交日期} & \multicolumn{3}{c}{\@cdate}\\
+    \cmidrule(r){3-5}
+  \end{tabular}\end{center}}
+
+    \parbox[t][2.5cm][t]{\textwidth}{
+    \begin{center}  \end{center} }
+
+    %\parbox[t][1cm][b]{\textwidth}{
+    %\begin{center} {\sanhao \kai \@cdate} \end{center} }
+
+  \end{center}
+
+    % 封二
+    \newpage
+
+    \thispagestyle{empty}
+
+    \parbox[t][16cm][t]{\textwidth}{
+    \begin{center}  \end{center} }
+
+    \parbox[b][10em][b]{\textwidth}{\kai \sanhao
+      \begin{tabular}{l p{12em}}
+        学~~~~~~~~~~~~~~~~号：& {\bf ~~~~\@snumber}\\
+        论文答辩日期：& ~~~~~~~~~~年~~~~~~~月~~~~~~~日\\
+        指~~~导~~~教~~~师： &~~~~~~~~~~~~~~~~~~~~~~（签字）\\
+        \end{tabular}
+    }
+
+    % 英文封面
+    \newpage
+
+    \thispagestyle{empty}
+    \begin{center}
+    \parbox[t][1cm][t]{\textwidth}{
+    \begin{center}  \end{center} }
+
+    \parbox[t][1cm][c]{\textwidth}{\sanhao
+    \begin{center} {\textbf{\textsf Dissertation for {\@edegree}}}\end{center} }
+
+    \parbox[t][4cm][c]{\textwidth}{\erhao
+    \begin{center} {\textbf{\textsf{\@etitle}}}\end{center} }
+
+    \parbox[t][4cm][t]{\textwidth}{
+    \begin{center}  \end{center} }
+
+    \parbox[t][5cm][b]{\textwidth}{
+    \begin{center} {\sanhao \textsf{\textbf{\@eauthor\\
+            Supervised by ~\@esupervisor \\ \@esubject\\} }} \end{center} }
+
+    \parbox[t][3cm][c]{\textwidth}{ {\sanhao
+    \begin{center}
+      \@eaddress
+    \end{center} } }
+
+    \parbox[t][2cm][b]{\textwidth}{
+    \begin{center} {\sanhao \textbf{\textsf{\@edate}}} \end{center} }
+    \end{center}
+    \end{titlepage}
+
+    \clearpage
+
+    %Abstract%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \defaultfont
+    \pagestyle{plain}
+
+      \phantomsection
+      \begin{center} \kai \xiaoer
+        \uuline{南京大学本科生毕业论文(设计)中文摘要}
+
+        \vspace{15pt}
+
+        {\fontsize{16pt}{8pt}\selectfont
+          \begin{tabular}{p{3.5em}@{} p{2.5em} p{2em}@{} p{2em}@{} p{2.5em} p{2em}@{} p{7em}@{} p{3.5em}}
+            \multicolumn{3}{l}{毕业论文题目:} &\multicolumn{5}{b{17em}}{\@ctitle}\\
+            \cmidrule(r){4-8}\addlinespace[8pt]
+            \@cdepart &院系& \multicolumn{2}{c}{\@csubject} &专业& \@ngrade &级本科生姓名:& \@cauthor\\
+            \cmidrule(r){1-1}\cmidrule(r){3-4}\cmidrule(r){6-6}\cmidrule(r){8-8}\addlinespace[8pt]
+            \multicolumn{4}{c}{指导教师(姓名、职称):} &\multicolumn{2}{c}{\@csupervisor} &\@stitle\\
+            \cmidrule{5-8}
+          \end{tabular}}
+
+        \vspace{1.5cm}
+
+      % {\hei \sanhao 中文摘要}
+      \end{center}
+      \addcontentsline{toc}{chapter}{中文摘要}
+      \markboth{}{}
+      \setcounter{page}{1}
+      {\kai \sanhao 摘要：} \\
+
+      \@cabstract\\
+      \\
+     {\kai \sanhao 关键词：} ~\@ckeywords
+ 
+      \defaultfont
+      \clearpage
+
+      \newpage
+      \phantomsection
+      \begin{center} \kai \xiaoer
+        \uuline{南京大学本科生毕业论文(设计)英文摘要}
+      \end{center}
+
+      \vspace{-10pt}
+
+      {\xiaosan \parindent 0pt
+
+        \begin{tabular}{@{}l p{22em}}
+          THESIS: & \fontsize{16pt}{10pt}\selectfont \@etitle\\
+        \end{tabular}
+
+        DEPARTMENT:~~~~\@edepart
+        \vspace{-5pt}
+
+        SPECIALIZATION:~~~~\@esubject
+        \vspace{5pt}
+
+        UNDERGRADUATE:~~~~\@eauthor
+        \vspace{5pt}
+
+        MENTOR:~~~~\@esupervisor
+        \vspace{5pt}
+
+        ABSTRACT:~~~~
+      }
+
+      \vspace{1cm}
+
+      %\begin{center}{\bf \sanhao Abstract}\end{center}
+      \addcontentsline{toc}{chapter}{英文摘要}
+      \markboth{}{}
+
+      \@eabstract\\
+      \\
+      KEYWORDS:~\@ekeywords
+
+      \clearpage
+
+    % Contents %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %\renewcommand{\baselinestretch}{1.5}
+    %\fontsize{12pt}{12pt}\selectfont
+    %\pagestyle{fancy}
+
+    % \phantomsection
+    % \addcontentsline{toc}{chapter}{\contentsname}
+    \tableofcontents
+    \markboth{\contentsname}{\contentsname}
+    \clearpage
+    %\defaultfont
+    \pagenumbering{arabic}
+    \setcounter{page}{1}
+
+}
+
+\makeatother

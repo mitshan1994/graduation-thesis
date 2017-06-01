@@ -1,0 +1,69 @@
+% -*- coding: utf-8 -*-
+\chapter{预备及定义}
+\label{chap01}
+
+为了方便, 下面我们集中给出本文用的一些定义以及一些记号.
+
+\begin{definition} \label{def:regular space}
+  设X为拓扑空间.
+  \begin{enumerate}
+  \item 若X满足$T_2$公理,则称X为\textbf{Hausdorff}空间.
+  \item 若X满足$T_3$公理,则称X为\textbf{正则}空间.
+  \item 若X满足$T_4$公理,则称X为\textbf{正规}空间.
+  \end{enumerate}
+\end{definition}
+
+\begin{definition} \label{def:lindelof}
+  拓扑空间X称为\textbf{Lindel\"{o}f}的,如果X的任意开覆盖都有可数子覆盖.
+\end{definition}
+
+\begin{definition} \label{def:countably compact}
+  拓扑空间X称为\textbf{可数紧}的,如果X的任意可数开覆盖存在有限子覆盖.
+\end{definition}
+
+\begin{definition} \label{def:refinement}
+  X为一拓扑空间.$\mathscr{U}, \mathscr{V}$为X的两个覆盖.
+  称$\mathscr{V}$为$\mathscr{U}$的一个\textbf{加细},如果
+  \begin{equation*}
+    \forall V \in \mathscr{V}, \exists U \in \mathscr{U}, \text{使得}
+    V \subseteq U, \text{且} \newline  %% 这里最好换个行
+    \bigcup \mathscr{V} = \bigcup \mathscr{U}.
+  \end{equation*}
+\end{definition}
+
+\begin{definition} \label{def:local finite}
+  X为一拓扑空间,$\mathscr{A}$为X的一个子集族.称$\mathscr{A}$在X中是\textbf{局部有限}的,如果
+  \begin{equation*}
+    \forall x \in X, \exists x \text{的邻域}U,\text{使得}
+    \{A \in \mathscr{A} \mid A \cap U \neq \varnothing \}\text{为有限集}.
+  \end{equation*}
+\end{definition}
+
+\begin{definition} \label{def:sigma local finit}
+  X为一拓扑空间,$\mathscr{A}$为X的一个子集族.
+  称$\mathscr{A}$在X中是\textbf{$\sigma$-局部有限}的,如果$\mathscr{A}$是可数多个局部有限族的并.
+\end{definition}
+
+\begin{definition} \label{def:discrete}
+  拓扑空间X的子集族$\mathscr{U}$称为\textbf{离散的}, 如果对任意$x \in X$,
+  存在$x$的邻域$A$, 使得$A$最多与$\mathscr{U}$中的一个元素相交非空.
+\end{definition}
+
+\begin{definition} \label{def:closure-preserving}
+  设$\mathscr{U}$为拓扑空间X的子集族, 称$\mathscr{U}$为\textbf{闭包保持}的, 如果
+  \[
+    \bigcup \{ \overline{U} \mid U \in \mathscr{U} \}
+    = \overline{\bigcup \{ U \mid U \in \mathscr{U} \}}.
+  \]
+\end{definition}
+
+%% 仿紧的定义
+\begin{definition} \label{def:paracompact}
+  拓扑空间X是\textbf{仿紧}的,如果它的任意开覆盖都有局部有限开加细.
+\end{definition}
+紧空间是仿紧空间,因为紧空间的任意开覆盖存在有限子覆盖,从而是局部有限的,子覆盖也是一个开加细,所以是仿紧的.
+
+\begin{definition}
+  设X, Y为拓扑空间,称映射$f : X \longrightarrow Y$为\textbf{完备的},
+  如果f为闭的连续满映射,且对$\forall y \in Y, f^{-1}(y)$是X的紧子集.
+\end{definition}
